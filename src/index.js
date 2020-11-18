@@ -4,13 +4,14 @@ import { Provider } from 'react-redux';
 import { Router, Stack } from 'react-native-router-flux';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import SplashScreen from 'react-native-splash-screen';
-
+import { View, Text } from 'react-native'
 import { Root, StyleProvider } from 'native-base';
 import getTheme from '../native-base-theme/components';
 import theme from '../native-base-theme/variables/commonColor';
-
+import { AppNavigator } from "./navigation/AppNavigator";
 import Routes from './routes/index';
 import Loading from './components/UI/Loading';
+import { LoginScreen } from "./screens/LoginScreen";
 
 class App extends React.Component {
   constructor() {
@@ -35,11 +36,15 @@ class App extends React.Component {
       <Root>
         <Provider store={store}>
           <PersistGate loading={<Loading />} persistor={persistor}>
-            <StyleProvider style={getTheme(theme)}>
+            <AppNavigator/>
+            {/* <View>
+              <Text>hello</Text>
+            </View> */}
+            {/* <StyleProvider style={getTheme(theme)}>
               <Router>
                 <Stack key="root">{Routes}</Stack>
               </Router>
-            </StyleProvider>
+            </StyleProvider> */}
           </PersistGate>
         </Provider>
       </Root>
@@ -53,3 +58,4 @@ App.propTypes = {
 };
 
 export default App;
+
